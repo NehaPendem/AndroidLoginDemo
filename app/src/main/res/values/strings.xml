@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">LoginDemo</string>
+    <string name="name">Name</string>
+    <string name="newuser">New User? Sign Up</string>
+    <string name="notnewuser">Already signed In? Log In</string>
+    <string name="password">Password</string>
+    <string name="enteremail">Enter Email</string>
+    <string name="email">Email</string>
+    <string name="forgotpassword">Forgot Password?</string>
+    <string name="resetpassword">Reset Password</string>
+    <string name="login">Login</string>
+    <string name="age">Age</string>
+    <string name="register">Register</string>
+    <string name="logout">Logout</string>
+    <string name="attempts">No of Attempts Remaining: </string>
+    <string name="SecondActivity">Second Activity</string>
+</resources>
