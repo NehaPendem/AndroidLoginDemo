@@ -58,11 +58,12 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            Log.d("complete","completed");
+
                             if(task.isSuccessful()){
-                                Log.d("task","task done");
+
                                //sendEmailVerification();
                                 sendUserData();
+                                firebaseAuth.signOut();
                                 Toast.makeText(RegistrationActivity.this,"Successfully Registered, Upload Complete",Toast.LENGTH_SHORT).show();
 
                                 finish();
@@ -101,7 +102,7 @@ public class RegistrationActivity extends AppCompatActivity {
         regButton=(Button)findViewById(R.id.btnRegister);
         userLogin=(TextView)findViewById(R.id.tvuserlogin);
         userAge=(EditText)findViewById(R.id.etAge);
-        //userProfilePic=(ImageView)findViewById(R.id.ivProfile);
+        userProfilePic=(ImageView)findViewById(R.id.ivProfile);
     }
 
     private Boolean validate(){
@@ -124,32 +125,32 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void sendEmailVerification(){
-        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
-
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser!=null){
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
                         sendUserData();
-                        Toast.makeText(RegistrationActivity.this,"Successfully Registered, Verification mail has been sent",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationActivity.this, "Successfully Registered, Verification mail sent!", Toast.LENGTH_SHORT).show();
                         firebaseAuth.signOut();
                         finish();
-                        startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
-                    }
-                    else{
-                        Toast.makeText(RegistrationActivity.this,"Verification mail hasn't been sent",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                    }else{
+                        Toast.makeText(RegistrationActivity.this, "Verification mail has'nt been sent!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
         }
     }
 
     private void sendUserData(){
+        Log.d("user data","updating user data");
         FirebaseDatabase firebaseDatabase= FirebaseDatabase.getInstance();
         DatabaseReference myRef= firebaseDatabase.getReference(firebaseAuth.getUid());
         UserProfile userProfile = new UserProfile(age,email,name);
+        Log.d("profile",userProfile.getUserName());
+        
         myRef.setValue(userProfile);
 
     }

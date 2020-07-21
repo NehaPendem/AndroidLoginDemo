@@ -5,7 +5,9 @@
     <string name="notnewuser">Already signed In? Log In</string>
     <string name="password">Password</string>
     <string name="enteremail">Enter Email</string>
+    <string name="image">Image</string>
     <string name="email">Email</string>
+    <string name="edit">Edit</string>
     <string name="forgotpassword">Forgot Password?</string>
     <string name="resetpassword">Reset Password</string>
     <string name="login">Login</string>
