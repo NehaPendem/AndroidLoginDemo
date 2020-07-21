@@ -8,6 +8,8 @@
     <string name="image">Image</string>
     <string name="email">Email</string>
     <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="changepassword">Change Password</string>
     <string name="forgotpassword">Forgot Password?</string>
     <string name="resetpassword">Reset Password</string>
     <string name="login">Login</string>

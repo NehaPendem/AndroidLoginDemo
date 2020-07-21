@@ -3,7 +3,10 @@ package com.example.logindemo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,9 +23,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView profilePic;
     private TextView profileName,profileAge, profileEmail;
-    private Button profileUpdate;
+    private Button profileUpdate,  changePassword;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
+
 
 
 
@@ -36,9 +40,12 @@ public class ProfileActivity extends AppCompatActivity {
         profileAge=findViewById(R.id.tvProfileAge);
         profileEmail=findViewById(R.id.tvProfileEmail);
         profileUpdate = findViewById(R.id.btnProfileUpdate);
+        changePassword=findViewById(R.id.btnChangePassword);
 
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
 
@@ -60,8 +67,35 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        profileUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,UpdateProfile.class));
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,UpdatePassword.class));
+            }
+        });
+
 
 
 
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }
