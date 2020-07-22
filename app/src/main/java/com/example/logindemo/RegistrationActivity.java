@@ -37,13 +37,15 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private static final String TAG = "tag";
     private EditText userName, userPassword, userEmail,userAge;
-    private static int PICK_IMAGE=123;
+
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
     private ImageView userProfilePic;
     String email,name,age,password;
     private FirebaseStorage firebaseStorage;
+
+    private static int PICK_IMAGE=123;
     Uri imagePath;
     private StorageReference storageReference;
 
